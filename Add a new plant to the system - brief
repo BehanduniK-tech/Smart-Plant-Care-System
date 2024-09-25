@@ -1,0 +1,26 @@
+Implement a code that simulates a smart plant care system focusing on the "Add a new plant to the system" functionality. This functionality allows the user to input details for a new plant, which are then stored in the program.
+
+Create a program that simulates a smart plant care system.
+The program should provide a menu to the user with the following options:
+a. Add a new plant to the system
+b. Update plant information
+c. Search for a plant
+y. Exit
+Please note that the full program will have all these options. However, certain grades will
+contain only a part of this menu. The program should utilise loops and conditional statements
+to ensure the proper flow of actions.
+
+a. Add a new plant to the system:
+• Prompt the user to enter the plant's name, species, watering schedule, and sunlight
+requirements.
+• Generate a unique ID for the new plant.
+• Store the plant details (ID, name, species, watering schedule, and sunlight
+requirements) using individual variables. For example, you can define variables such
+as plantID for the unique plant ID, plantName for the plant's name, plantSpecies for
+the species of the plant, wateringSchedule for the watering schedule for the plant
+(e.g., daily, weekly), and sunlightRequirements for the sunlight requirements for the
+plant (e.g., full sun, partial shade).
+• You need to provide screenshots of your code and the different outcomes it can give based
+on user inputs.
+• Your Word document should have appropriate headings to ensure that this task can easily
+be identified alongside the rest of your work. 

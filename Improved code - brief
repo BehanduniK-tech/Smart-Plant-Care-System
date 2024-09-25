@@ -1,0 +1,10 @@
+b. Update plant information:
+• Prompt the user to enter the plant's ID to update.
+• Check if the plant ID exists.
+• If it exists, allow the user to update the plant's name, species, watering schedule, or
+sunlight requirements.
+• If it does not exist, display an appropriate error message.
+c. Search for a plant:
+• Prompt the user to enter the name of the plant they want to search for.
+• If the plant is found, display its details.
+• If not found, display a message indicating that the plant is not in the system

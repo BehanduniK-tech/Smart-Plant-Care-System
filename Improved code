@@ -1,0 +1,154 @@
+#include <stdio.h>
+#include <string.h>
+
+#define MAX_PLANTS 100 // Maximum number of plants
+#define NAME_LENGTH 50
+#define SPECIES_LENGTH 50
+#define SCHEDULE_LENGTH 20
+#define SUNLIGHT_LENGTH 20
+
+typedef struct {
+    int id;
+    char name[NAME_LENGTH];
+    char species[SPECIES_LENGTH];
+    char wateringSchedule[SCHEDULE_LENGTH];
+    char sunlightRequirements[SUNLIGHT_LENGTH];
+} Plant;
+
+Plant plants[MAX_PLANTS]; // Array to store plants
+int plantCount = 0; // Number of plants currently in the system
+
+void addPlant() {
+    if (plantCount >= MAX_PLANTS) {
+        printf("Cannot add more plants. Maximum limit reached.\n");
+        return;
+    }
+
+    Plant newPlant;
+    newPlant.id = plantCount + 1; // Assigning ID based on current count
+
+    printf("Enter the plant's name: ");
+    fgets(newPlant.name, sizeof(newPlant.name), stdin);
+    newPlant.name[strcspn(newPlant.name, "\n")] = '\0'; // Remove newline character
+
+    printf("Enter the plant's species: ");
+    fgets(newPlant.species, sizeof(newPlant.species), stdin);
+    newPlant.species[strcspn(newPlant.species, "\n")] = '\0';
+
+    printf("Enter the watering schedule (e.g., daily, weekly): ");
+    fgets(newPlant.wateringSchedule, sizeof(newPlant.wateringSchedule), stdin);
+    newPlant.wateringSchedule[strcspn(newPlant.wateringSchedule, "\n")] = '\0';
+
+    printf("Enter the sunlight requirements (e.g., full sun, partial shade): ");
+    fgets(newPlant.sunlightRequirements, sizeof(newPlant.sunlightRequirements), stdin);
+    newPlant.sunlightRequirements[strcspn(newPlant.sunlightRequirements, "\n")] = '\0';
+
+    // Store the new plant in the array
+    plants[plantCount] = newPlant;
+    plantCount++;
+
+    printf("\nPlant added successfully!\n");
+    printf("Plant ID: %d\n", newPlant.id);
+    printf("Name: %s\n", newPlant.name);
+    printf("Species: %s\n", newPlant.species);
+    printf("Watering Schedule: %s\n", newPlant.wateringSchedule);
+    printf("Sunlight Requirements: %s\n", newPlant.sunlightRequirements);
+}
+
+void updatePlant() {
+    int id, found = 0;
+
+    printf("Enter the plant's ID to update: ");
+    scanf("%d", &id);
+    getchar(); // Consume newline
+
+    for (int i = 0; i < plantCount; i++) {
+        if (plants[i].id == id) {
+            found = 1;
+
+            printf("Updating plant ID: %d\n", id);
+
+            printf("Enter the new name (current: %s): ", plants[i].name);
+            fgets(plants[i].name, sizeof(plants[i].name), stdin);
+            plants[i].name[strcspn(plants[i].name, "\n")] = '\0'; // Remove newline
+
+            printf("Enter the new species (current: %s): ", plants[i].species);
+            fgets(plants[i].species, sizeof(plants[i].species), stdin);
+            plants[i].species[strcspn(plants[i].species, "\n")] = '\0';
+
+            printf("Enter the new watering schedule (current: %s): ", plants[i].wateringSchedule);
+            fgets(plants[i].wateringSchedule, sizeof(plants[i].wateringSchedule), stdin);
+            plants[i].wateringSchedule[strcspn(plants[i].wateringSchedule, "\n")] = '\0';
+
+            printf("Enter the new sunlight requirements (current: %s): ", plants[i].sunlightRequirements);
+            fgets(plants[i].sunlightRequirements, sizeof(plants[i].sunlightRequirements), stdin);
+            plants[i].sunlightRequirements[strcspn(plants[i].sunlightRequirements, "\n")] = '\0';
+
+            printf("Plant information updated successfully!\n");
+            break;
+        }
+    }
+
+    if (!found) {
+        printf("Error: Plant ID %d not found.\n", id);
+    }
+}
+
+void searchPlant() {
+    char searchName[NAME_LENGTH];
+    int found = 0;
+
+    printf("Enter the name of the plant to search for: ");
+    fgets(searchName, sizeof(searchName), stdin);
+    searchName[strcspn(searchName, "\n")] = '\0'; // Remove newline
+
+    for (int i = 0; i < plantCount; i++) {
+        if (strcmp(plants[i].name, searchName) == 0) {
+            found = 1;
+            printf("\nPlant found!\n");
+            printf("Plant ID: %d\n", plants[i].id);
+            printf("Name: %s\n", plants[i].name);
+            printf("Species: %s\n", plants[i].species);
+            printf("Watering Schedule: %s\n", plants[i].wateringSchedule);
+            printf("Sunlight Requirements: %s\n", plants[i].sunlightRequirements);
+            break;
+        }
+    }
+
+    if (!found) {
+        printf("Plant '%s' is not in the system.\n", searchName);
+    }
+}
+
+int main() {
+    int choice;
+
+    while (1) {
+        // Displaying menu options
+        printf("\nSmart Plant Care System Menu:\n");
+        printf("a. Add a new plant to the system\n");
+        printf("b. Update plant information\n");
+        printf("c. Search for a plant\n");
+        printf("y. Exit\n");
+        printf("Enter your choice: ");
+        choice = getchar();
+        getchar(); // to consume the newline character after the first input
+
+        switch (choice) {
+            case 'a':
+                addPlant();
+                break;
+            case 'b':
+                updatePlant();
+                break;
+            case 'c':
+                searchPlant();
+                break;
+            case 'y':
+                printf("Exiting the Smart Plant Care System. Goodbye!\n");
+                return 0;
+            default:
+                printf("Invalid choice. Please try again.\n");
+        }
+    }
+}

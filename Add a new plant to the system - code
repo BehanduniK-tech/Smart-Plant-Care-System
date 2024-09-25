@@ -1,0 +1,56 @@
+#include <stdio.h>
+int main() {
+    int choice;
+    int plantID = 1; // Starting plant ID from 1
+    char plantName[50];
+    char plantSpecies[50];
+    char wateringSchedule[20];
+    char sunlightRequirements[20];
+
+    while(1) {
+        // Displaying menu options
+        printf("\nSmart Plant Care System Menu:\n");
+        printf("a. Add a new plant to the system\n");
+        printf("y. Exit\n");
+        printf("Enter your choice: ");
+        choice = getchar();
+        getchar(); // to consume the newline character after the first input
+
+        if(choice == 'a') {
+            // the user to enter plant details
+            printf("Enter the plant's name: ");
+            fgets(plantName, sizeof(plantName), stdin);
+            plantName[strcspn(plantName, "\n")] = '\0';  // remove newline character
+
+            printf("Enter the plant's species: ");
+            fgets(plantSpecies, sizeof(plantSpecies), stdin);
+            plantSpecies[strcspn(plantSpecies, "\n")] = '\0';
+
+            printf("Enter the watering schedule (e.g., daily, weekly): ");
+            fgets(wateringSchedule, sizeof(wateringSchedule), stdin);
+            wateringSchedule[strcspn(wateringSchedule, "\n")] = '\0';
+
+            printf("Enter the sunlight requirements (e.g., full sun, partial shade): ");
+            fgets(sunlightRequirements, sizeof(sunlightRequirements), stdin);
+            sunlightRequirements[strcspn(sunlightRequirements, "\n")] = '\0';
+
+            // display the plant information
+            printf("\nPlant added successfully!\n");
+            printf("Plant ID: %d\n", plantID);
+            printf("Name: %s\n", plantName);
+            printf("Species: %s\n", plantSpecies);
+            printf("Watering Schedule: %s\n", wateringSchedule);
+            printf("Sunlight Requirements: %s\n", sunlightRequirements);
+
+            plantID++; // increment plant ID for the next plant
+        } 
+        else if(choice == 'y') {
+            // exiting the program
+            printf("Exiting the Smart Plant Care System. Goodbye!\n");
+            break;
+        } 
+        else {
+            // h  andle invalid input
+            printf("Invalid choice. Please try again.\n");
+        }
+    }
